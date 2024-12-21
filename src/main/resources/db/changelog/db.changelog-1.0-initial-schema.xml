@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="your_username">
+        <preConditions onFail="MARK_RAN">
+            <dbms type="h2"/>
+            <tableExists tableName="DATABASECHANGELOG"/>
+        </preConditions>
+    </changeSet>
+
+    <changeSet id="DISH_1" author="ibabrou">
+        <createTable tableName="dish">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cuisine" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="DESSERT_1" author="ibabrou">
+        <createTable tableName="dessert">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="DRINK_1" author="ibabrou">
+        <createTable tableName="drink">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ORDER_1" author="ibabrou">
+        <createTable tableName="order_lunch">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="total_price" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lunch_option_id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="drink_option_id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ORDER_2" author="ibabrou">
+        <createTable tableName="lunch_option">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="dish_id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="dessert_id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="lunch_option"
+                baseColumnNames="dish_id"
+                referencedTableName="dish"
+                referencedColumnNames="id"
+                constraintName="fk_lunch_option_dish"/>
+
+        <!-- Внешний ключ для dessert_id -->
+        <addForeignKeyConstraint
+                baseTableName="lunch_option"
+                baseColumnNames="dessert_id"
+                referencedTableName="dessert"
+                referencedColumnNames="id"
+                constraintName="fk_lunch_option_dessert"/>
+    </changeSet>
+
+    <changeSet id="ORDER_3" author="ibabrou">
+        <createTable tableName="drink_option">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="drink_id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="with_ice" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="with_lemon" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="drink_option"
+                baseColumnNames="drink_id"
+                referencedTableName="drink"
+                referencedColumnNames="id"
+                constraintName="fk_lunch_option_drink"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+
+    <changeSet id="INSERT_DISH_1" author="ibabrou">
+        <insert tableName="dish">
+            <column name="name" value="Pizza"/>
+            <column name="price" value="10.99"/>
+            <column name="cuisine" value="ITALIAN"/>
+        </insert>
+        <insert tableName="dish">
+            <column name="name" value="Tacos"/>
+            <column name="price" value="15.49"/>
+            <column name="cuisine" value="MEXICAN"/>
+        </insert>
+        <insert tableName="dish">
+            <column name="name" value="Pierogi"/>
+            <column name="price" value="12.00"/>
+            <column name="cuisine" value="POLISH"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="INSERT_DESSERT_1" author="ibabrou">
+        <insert tableName="dessert">
+            <column name="name" value="Ice Cream"/>
+            <column name="price" value="5.50"/>
+        </insert>
+        <insert tableName="dessert">
+            <column name="name" value="Brownie"/>
+            <column name="price" value="6.00"/>
+        </insert>
+        <insert tableName="dessert">
+            <column name="name" value="Cookies"/>
+            <column name="price" value="3.50"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="INSERT_DRINK_1" author="ibabrou">
+        <insert tableName="drink">
+            <column name="name" value="Coca Cola"/>
+            <column name="price" value="5.50"/>
+        </insert>
+        <insert tableName="drink">
+            <column name="name" value="Fanta"/>
+            <column name="price" value="5.50"/>
+        </insert>
+        <insert tableName="drink">
+            <column name="name" value="Sprite"/>
+            <column name="price" value="5.50"/>
+        </insert>
+        <insert tableName="drink">
+            <column name="name" value="Water"/>
+            <column name="price" value="3.00"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
